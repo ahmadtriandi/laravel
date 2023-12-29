@@ -1,0 +1,20 @@
+<p>>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, pariatur perferendis voluptatum totam natus, quasi dolorem beatae exercitationem omnis quas eveniet sequi maiores amet assumenda cupiditate alias adipisci autem voluptatem saepe? Aut explicabo nemo saepe asperiores necessitatibus.</p> 
+<p>maiores nisi perferendis unde atque? Deserunt perspiciatis veritatis architecto fugit explicabo omnis corporis, aut ad. Eveniet aliquid illo, ratione impedit cum fuga dolore error, cumque, est pariatur ex. Repellat vel expedita at nam, nihil inventore ipsam necessitatibus aliquid molestias! Esse corporis excepturi, eveniet veniam earum unde, fugiat fugit dicta quibusdam sunt eos quos sapiente sint? Quis id officiis aperiam similique ratione, molestiae explicabo.</p>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae tempore, recusandae iure autem, iusto, nemo quidem atque quod sunt distinctio esse temporibus. Veritatis cupiditate nihil, nemo odio quaerat quibusdam ab quas est, quisquam veniam exercitationem sapiente enim alias cum incidunt eius vero hic magni, aut et aspernatur adipisci consequuntur. Vero non tenetur quos? Deserunt ad laudantium error asperiores neque.</p>
+
+
+Post::create([
+'title'=>'Judul Keempat',
+'category_id'=>4,
+'slug'=> 'judul-ke-empat',
+'excerpt'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi beatae tempore',
+'body'=>'<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi, pariatur perferendis voluptatum totam natus, quasi dolorem beatae exercitationem omnis quas eveniet sequi maiores amet assumenda cupid itate alias adipisci autem voluptatem saepe? Aut explicabo nemo saepe asperiores necessitatibus.</p> <p>maiores nisi perferendis unde atque? Deserunt perspiciatis veritatis architecto fugit explicabo omnis corpor is, aut ad. Eveniet aliquid illo, ratione impedit cum fuga dolore error, cumque, est pariatur ex. Repellat vel expedita at nam, nihil inventore ipsam necessitatibus aliquid molestias! Esse corporis excepturi, eve niet veniam earum unde, fugiat fugit dicta quibusdam sunt eos quos sapiente sint? Quis id officiis aperiam similique ratione, molestiae explicabo.</p><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mo di beatae tempore, recusandae iure autem, iusto, nemo quidem atque quod sunt distinctio esse temporibus. Veritatis cupiditate nihil, nemo odio quaerat quibusdam ab quas est, quisquam veniam exercitationem sapiente enim alias cum incidunt eius vero hic magni, aut et aspernatur adipisci consequuntur. Vero non tenetur quos? Deserunt ad laudantium error asperiores neque.</p>'])  
+
+Category::create([
+'name' => 'Pesonal',
+'slug' => 'personal'
+])
+
+
+Post::where('id',4)->update(['category_id'=>2])
+
