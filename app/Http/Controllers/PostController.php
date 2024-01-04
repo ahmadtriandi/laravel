@@ -3,26 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class PostController extends Controller
 {
     public function index()
-    {
-       
+    { 
+     $title = '';
+     if(request('category')) {
+        $category = Category::firstWhere('slug', request('category'));
+        $title = 'In ' . $category->name;
+    
+     }
 
-        $post = Post::latest();
+     if(request('author')) {
+        $author = User::firstWhere('username', request('author'));
+        $title = 'By. ' . $author->name;
+    
+     }
 
-        if(request('search')) {
-            $post->where('title', 'like', '%' .request('search'). '%')->orWhere('body', 'like', '%' .request('search'). '%');
-        }
+     
+
+        
     return view('posts', [
-        "title" => " All Posts",
+        "title" => " $title",
         "active" => "Posts",
-        "posts" => $post->get()
+        "posts" => Post::latest()->filter(request(['search','category','author']))->paginate(5)->withQueryString()
     ]);
-}
+    }
 
 public function show($slug)
     {
@@ -32,5 +43,7 @@ public function show($slug)
             "post" => Post::find($slug)
         ]);   
 }
-
 }
+
+
+
