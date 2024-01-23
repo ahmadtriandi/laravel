@@ -57,5 +57,9 @@ public function author()
 {
     return $this->belongsTo(User::class, 'user_id');
 }
+public function getRouteKeyName(): string
+{
+    return 'slug';
+}
 
 }

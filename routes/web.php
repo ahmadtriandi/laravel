@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+
+use App\Http\Controllers\DashboardPostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +50,7 @@ Route::get('/categories', function() {
     ]);
 });
 
+// sudah tidak di gunakan
 Route::get('/categories/{category:slug}', function(Category $category){
     return view('posts', [
         'title' => "Post By Category : $category->name",
@@ -56,6 +60,8 @@ Route::get('/categories/{category:slug}', function(Category $category){
 
     ]);
 });
+
+// sudah tidak di gunakan
 Route::get('/authors/{author:username}',function(User $author) {
     return view('posts', [
         'title' => "Post By Author : $author->name",
@@ -66,11 +72,20 @@ Route::get('/authors/{author:username}',function(User $author) {
 
 });
 
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
+Route::post('/logout', [LoginController::class, 'logout']);
+
 Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
     
+Route::get('/dashboard', function() {
+    return view('dashboard.index');
+    })
+        ->middleware('auth');
 
-
+Route::resource('/dashboard/posts', DashboardPostController::class)
+->middleware('auth');
 
 
 
